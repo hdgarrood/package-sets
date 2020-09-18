@@ -38,11 +38,11 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: 'master'
-      - name: Update latest-compatible-sets.json for ${{ github.ref }}
+      - name: Update latest-compatible-sets.json for
         run: |
           nix-shell --run './update-latest-compatible-sets.sh ${{ github.ref }}'
       - name: Commit changes to latest-compatible-sets.json
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: Update latest-compatible-sets.json
+          commit_message: Update latest-compatible-sets.json for ${{ github.ref }}
           file_pattern: latest-compatible-sets.json
