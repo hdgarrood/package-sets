@@ -16,7 +16,7 @@ jobs:
           nix-shell --run '>packages.dhall dhall <<< ./src/packages.dhall'
       - name: Update latest-compatible-sets.json
         run: |
-          nix-shell --run 'update-latest-compatible-sets.sh ${{ github.ref }}'
+          nix-shell --run './update-latest-compatible-sets.sh ${{ github.ref }}'
       - name: Commit changes to latest-compatible-sets.json
         uses: stefanzweifel/git-auto-commit-action@v4
         with:

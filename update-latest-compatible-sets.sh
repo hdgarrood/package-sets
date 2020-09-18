@@ -36,5 +36,7 @@ function combine() {
   jq --slurp 'map(to_entries | .[]) | sort_by(.value) | from_entries'
 }
 
-get_inputs $1 | combine > latest-compatible-sets.json.tmp
+tag=${1#/refs/tags/}
+echo >&2 "Updating latest-compatible-sets.json for $tag"
+get_inputs $tag | combine > latest-compatible-sets.json.tmp
 mv latest-compatible-sets.json.tmp latest-compatible-sets.json
