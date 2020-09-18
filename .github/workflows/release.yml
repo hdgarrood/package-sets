@@ -14,6 +14,14 @@ jobs:
       - name: Render packages.dhall
         run: |
           nix-shell --run '>packages.dhall dhall <<< ./src/packages.dhall'
+      - name: Update latest-compatible-sets.json
+        run: |
+          nix-shell --run 'update-latest-compatible-sets.sh ${{ github.ref }}'
+      - name: Commit changes to latest-compatible-sets.json
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Update latest-compatible-sets.json
+          file_pattern: latest-compatible-sets.json
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
