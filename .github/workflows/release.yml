@@ -38,7 +38,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: 'master'
-      - name: Update latest-compatible-sets.json
+      - name: Update latest-compatible-sets.json for ${{ github.ref }}
         run: |
           nix-shell --run './update-latest-compatible-sets.sh ${{ github.ref }}'
       - name: Commit changes to latest-compatible-sets.json
